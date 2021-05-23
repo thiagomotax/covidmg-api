@@ -5,6 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\ReportVerification
+ *
+ * @property-read \App\Models\CaseReport $caseReport
+ * @property-read \App\Models\County $county
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|ReportVerification newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReportVerification newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReportVerification query()
+ * @mixin \Eloquent
+ */
 class ReportVerification extends Model
 {
     use HasFactory;

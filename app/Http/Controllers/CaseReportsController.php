@@ -62,7 +62,6 @@ class CaseReportsController extends Controller
     public function update(Request $request, CaseReport $caseReport): Response
     {
         $request->validate([
-            'id' => 'required|integer',
             'county_id' => 'required|integer',
             'user_id' => 'required|integer',
             'suspect' => 'required|integer',

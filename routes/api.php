@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BedReportsController;
 use App\Http\Controllers\VaccineReportsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,12 @@ Route::get('/vaccine/{vaccineReport}', [VaccineReportsController::class, 'show']
 Route::post('/vaccine', [VaccineReportsController::class, 'store']);
 Route::put('/vaccine/{vaccineReport}', [VaccineReportsController::class, 'update']);
 Route::delete('/vaccine/{vaccineReport}', [VaccineReportsController::class, 'destroy']);
+
+Route::get('/bed', [BedReportsController::class, 'index']);
+Route::get('/bed/{bedReport}', [BedReportsController::class, 'show']);
+Route::post('/bed', [BedReportsController::class, 'store']);
+Route::put('/bed/{bedReport}', [BedReportsController::class, 'update']);
+Route::delete('/bed/{bedReport}', [BedReportsController::class, 'destroy']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

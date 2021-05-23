@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -56,6 +57,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -66,6 +68,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'is_admin'
     ];
 
     /**
@@ -76,7 +79,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    /**
+     * @var mixed
+     */
 
     /**
      * Get the user bed reports.
@@ -127,12 +132,8 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-
+        if(auth()->user()->is_admin == true)
+            return true;
+        return false;
     }
-
-
-
-
-
-
 }

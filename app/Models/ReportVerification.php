@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class ReportVerification extends Model
 {
     use HasFactory;
-    protected $table = 'verifications';
+    protected $table = 'report_verifications';
 
     protected $guarded = ['created_at', 'updated_at'];
 

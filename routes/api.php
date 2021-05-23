@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BedReportsController;
+use App\Http\Controllers\ReportVerificationsController;
 use App\Http\Controllers\VaccineReportsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,13 @@ Route::get('/bed/{bedReport}', [BedReportsController::class, 'show']);
 Route::post('/bed', [BedReportsController::class, 'store']);
 Route::put('/bed/{bedReport}', [BedReportsController::class, 'update']);
 Route::delete('/bed/{bedReport}', [BedReportsController::class, 'destroy']);
+
+Route::get('/report-verification', [ReportVerificationsController::class, 'index']);
+Route::get('/report-verification/{reportVerification}', [ReportVerificationsController::class, 'show']);
+Route::post('/report-verification', [ReportVerificationsController::class, 'store']);
+Route::put('/report-verification/{reportVerification}', [ReportVerificationsController::class, 'update']);
+Route::delete('/report-verification/{verificationReport}', [ReportVerificationsController::class, 'destroy']);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

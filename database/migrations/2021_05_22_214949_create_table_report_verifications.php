@@ -21,7 +21,6 @@ class CreateTableReportVerifications extends Migration
             $table->string('reportable_type');
             $table->date('date');
 
-            $table->foreign('case_report_id')->references('id')->on('case_reports');
             $table->foreign('county_id')->references('id')->on('counties');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

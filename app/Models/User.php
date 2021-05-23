@@ -51,4 +51,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Get the user bed reports.
+     */
+    public function bedReports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BedReport::class);
+    }
+
+    /**
+     * Get the user vaccine reports.
+     */
+    public function vaccineReports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(VaccineReport::class);
+    }
+
+    /**
+     * Get the user case reports.
+     */
+    public function caseReports(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CaseReport::class);
+    }
+
+    /**
+     * Get the user report verifications.
+     */
+    public function reportVerifications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ReportVerification::class);
+    }
+
+
 }

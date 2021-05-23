@@ -17,7 +17,8 @@ class CreateTableReportVerifications extends Migration
             $table->id();
             $table->unsignedBigInteger('county_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('case_report_id'); //in future, morph relation to handle vaccine, case or bed report
+            $table->integer('reportable_id')->unsigned();
+            $table->string('reportable_type');
             $table->date('date');
 
             $table->foreign('case_report_id')->references('id')->on('case_reports');

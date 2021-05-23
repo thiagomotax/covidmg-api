@@ -53,4 +53,12 @@ class BedReport extends Model
     {
         return $this->belongsTo(County::class);
     }
+
+    /**
+     * Get the report verification's item.
+     */
+    public function reportVerifications(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(ReportVerification::class, 'reportable');
+    }
 }

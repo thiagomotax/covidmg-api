@@ -65,10 +65,10 @@ class CaseReport extends Model
     }
 
     /**
-     * Get the case report report verifications.
+     * Get the report verification's item.
      */
-    public function reportVerifications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function reportVerifications(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->hasMany(ReportVerification::class);
+        return $this->morphMany(ReportVerification::class, 'reportable');
     }
 }

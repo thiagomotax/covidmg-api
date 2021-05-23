@@ -40,10 +40,10 @@ class ReportVerification extends Model
     }
 
     /**
-     * Get the case report that owns the report verification.
+     * Get the parent reportable model (case_report, bed_report or vaccine_report).
      */
-    public function caseReport(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function reportable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
-        return $this->belongsTo(CaseReport::class);
+        return $this->morphTo(__FUNCTION__, 'reportable_type', 'reportable_id');
     }
 }

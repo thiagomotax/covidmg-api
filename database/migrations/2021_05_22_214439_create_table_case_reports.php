@@ -22,7 +22,7 @@ class CreateTableCaseReports extends Migration
             $table->bigInteger('discarded');
             $table->bigInteger('death');
             $table->bigInteger('recovered');
-            $table->string('souce');
+            $table->string('source');
             $table->date('date');
 
             $table->foreign('county_id')->references('id')->on('counties');

@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTableAddIsAdmin extends Migration
+class AddPermissionRoles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +14,8 @@ class AlterUsersTableAddIsAdmin extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false)->after('remember_token');
-        });
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'inserter']);
     }
 
     /**
@@ -25,8 +25,7 @@ class AlterUsersTableAddIsAdmin extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_admin');
-        });
+        Role::where(['name' => 'admin'])->delete();
+        Role::where(['name' => 'inserter'])->delete();
     }
 }

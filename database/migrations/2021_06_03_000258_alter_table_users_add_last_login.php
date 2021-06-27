@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTableAddIsAdmin extends Migration
+class AlterTableUsersAddLastLogin extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterUsersTableAddIsAdmin extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false)->after('remember_token');
+            $table->timestamp('last_login')->nullable()->after('is_active');
         });
     }
 
@@ -26,7 +26,7 @@ class AlterUsersTableAddIsAdmin extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_admin');
+            $table->dropColumn('last_login');
         });
     }
 }

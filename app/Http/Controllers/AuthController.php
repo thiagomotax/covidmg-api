@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -183,5 +186,23 @@ class AuthController extends Controller
     public function destroy(User $user): Response
     {
         return response($user->delete());
+    }
+
+    public function changePassword(Request $request)
+    {
+        $validated = $request->validate(['token' => 'required', 'password' => 'required|string|confirmed']);
+
+        $passwordReset = DB::table('password_resets')->where([
+            'token' => $validated['token'],
+        ]);
+        $email = $passwordReset->first()->email;
+        $passwordReset->delete();
+
+        $user = User::where(['email' => $email])->first();
+
+        $user->password = Hash::make($validated['password']);
+        $user->save();
+
+        return response()->json(['status' => true, 'message' => 'Password successfully changed.']);
     }
 }

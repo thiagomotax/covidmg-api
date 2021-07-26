@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BedReportsController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ReportVerificationsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\VaccineReportsController;
@@ -23,6 +24,9 @@ use App\Http\Controllers\CaseReportsController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('reset.password.get');
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'validateToken']);
+Route::post('/change-password', [AuthController::class, 'changePassword']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/logout', [AuthController::class, 'logout']);
